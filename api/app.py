@@ -1,30 +1,28 @@
-from flask import Flask, Response
-from flask_restplus import Api
-from flask_socketio import SocketIO, send, emit
+from flask import Flask
+from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
-api = Api(app)
 socketio = SocketIO(app)
 
-@app.route('/')
-def index():
-    return "OK"
 
-@socketio.on('my event', namespace='/test')
-def test_message(message):
-    emit('my response', {'data': message['data']})
+socketio.init_app(app, cors_allowed_origins="*")
 
-@socketio.on('my broadcast event', namespace='/test')
+
+@socketio.on('broadcast', namespace='/csirl')
 def test_message(message):
+    print(f'Broadcast: {message}')
     emit('my response', {'data': message['data']}, broadcast=True)
 
-@socketio.on('connect', namespace='/test')
+
+@socketio.on('connect', namespace='/csirl')
 def test_connect():
+    print('Client connected.')
     emit('my response', {'data': 'Connected'})
 
-@socketio.on('disconnect', namespace='/test')
+
+@socketio.on('disconnect', namespace='/csirl')
 def test_disconnect():
-    print('Client disconnected')
+    print('Client disconnected.')
 
 
 if __name__ == '__main__':

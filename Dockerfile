@@ -1,11 +1,19 @@
-FROM python:3.6.5-slim
+FROM python:3.8-buster
 
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+RUN pip install pipenv
+COPY Pipfile Pipfile.lock ./
+RUN pipenv install --system --deploy --ignore-pipfile
+
+ENV PYTHONUNBUFFERED=1
+
+WORKDIR /apidir
+
+RUN useradd --system apiuser && \
+    mkdir api && \
+    chown -R apiuser api
+
+USER apiuser
 
 COPY api api
-WORKDIR /api
 
-#ENTRYPOINT ["gunicorn", "-w", "4", "-t", "1480", "-b", "0.0.0.0:5000", "api:create_app()"]
-
-CMD ["python3", "app.py"]
+CMD ["python3", "api/app.py"]
