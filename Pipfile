@@ -8,9 +8,9 @@ pytest = "==4.3.0"
 pytest-cov = "==2.6.1"
 
 [packages]
-Flask = "==1.0.2"
+Flask = "*"
 Flask-SocketIO = "*"
-Werkzeug = "==0.14.1"
+Werkzeug = "*"
 
 [requires]
 python_version = "3.8"
