@@ -1,0 +1,29 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+atomicwrites = "==1.3.0"
+attrs = "==18.2.0"
+click = "==7.0"
+coverage = "==4.5.2"
+gunicorn = "==19.9.0"
+itsdangerous = "==1.1.0"
+more-itertools = "==6.0.0"
+pluggy = "==0.9.0"
+py = "==1.8.0"
+pytest = "==4.3.0"
+pytest-cov = "==2.6.1"
+six = "==1.12.0"
+flask-restplus = "*"
+Flask = "==1.0.2"
+Jinja2 = "==2.10"
+MarkupSafe = "==1.1.1"
+Werkzeug = "==0.14.1"
+Flask-SocketIO = "*"
+
+[requires]
+python_version = "3.8"
